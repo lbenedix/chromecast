@@ -1,13 +1,13 @@
 const cjs = new Castjs();
 document.querySelector("button").addEventListener("click", function () {
   let url = document.querySelector("input").value;
-  let path = url.split("/").pop();
-  let conference = path.split("-")[0];
-  let eventId = path.split("-")[1];
 
   if (url.endsWith(".mp4")) {
     cjs.cast(url, {});
   } else {
+    let path = url.split("/").pop();
+    let conference = path.split("-")[0];
+    let eventId = path.split("-")[1];
     axios
       .get(`https://api.media.ccc.de/public/conferences/${conference}`)
       .then(function (response) {
